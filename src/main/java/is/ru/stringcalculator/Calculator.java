@@ -5,10 +5,8 @@ public class Calculator {
 	public static int add(String text){
 		if(text.equals(""))
 			return 0;
-		else if(text.contains(",")) {
+		else if(text.contains(",") || text.contains("\n")) {
 			return sum(splitNumbers(text));
-			//String [] numbers = text.split(",");
-			//return toInt(numbers[0]) + toInt(numbers[1]);
 		}
 		else	
 			return 1;
@@ -18,7 +16,7 @@ public class Calculator {
 	}
 
 	private static String[] splitNumbers(String numbers) {
-		return numbers.split(",");
+		return numbers.split(",|\n");
 	}
 
 	private static int sum(String[] numbers) {
@@ -26,6 +24,7 @@ public class Calculator {
 		for(String number : numbers) {
 			total += toInt(number);
 		}
+
 		return total;
 	}
 }
