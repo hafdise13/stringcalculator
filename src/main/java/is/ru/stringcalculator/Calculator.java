@@ -5,9 +5,14 @@ import java.util.ArrayList;
 public class Calculator {
 
 	public static int add(String text){
+
+		if(text.startsWith("//;\n")) {
+			String newText = text.replace("//;\n", "");
+			return sum(splitNumbers(newText));
+		}
 		if(text.equals(""))
 			return 0;
-		else if(text.contains(",") || text.contains("\n")) {
+		else if(text.contains(",") || text.contains("\n") || text.contains(";")) {
 			return sum(splitNumbers(text));
 		}
 		else	
@@ -18,14 +23,13 @@ public class Calculator {
 	}
 
 	private static String[] splitNumbers(String numbers) {
-		return numbers.split(",|\n");
+		return numbers.split(",|\n|;");
 	}
 
 	private static int sum(String[] numbers) {
 		int total = 0;
 		List<String> negativeNumbers = new ArrayList<String>();
-		List<String> largeNum = new ArrayList<String>();
-		
+
 		for(String number : numbers) {
 
 			if(toInt(number) < 0) {
@@ -42,4 +46,4 @@ public class Calculator {
 
 		return total;
 	}
-}
+} 
