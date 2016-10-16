@@ -28,19 +28,13 @@ public class Calculator {
 		
 		for(String number : numbers) {
 
-			if(toInt(number) >= 0) {
-				if(toInt(number) >= 1000) {
-					largeNum.add(number);
-				}
-				else {
-				total += toInt(number);
-				}
+			if(toInt(number) < 0) {
+				negativeNumbers.add(number);
 			}
 
-
-			else if(toInt(number) < 0) {
-				negativeNumbers.add(number);
-			}	
+			else if(toInt(number) < 1000) {
+				total += toInt(number);
+			}
 		}
 		if(negativeNumbers.size() > 0) {
 			throw new IllegalArgumentException("Negatives not allowed: " + negativeNumbers);
