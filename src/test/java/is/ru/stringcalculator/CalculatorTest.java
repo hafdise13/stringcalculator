@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.Rule;
+import java.util.List;
+import java.util.ArrayList;
+
 
 public class CalculatorTest {
 
@@ -39,7 +42,14 @@ public class CalculatorTest {
 	@Test
 	public void testNegativeNumbers() {
 		thrown.expect(IllegalArgumentException.class);
-    	thrown.expectMessage("Negatives not allowed: -1");
+    	thrown.expectMessage("Negatives not allowed: [-1]");
     	Calculator.add("-1,2");
+	}
+
+	@Test
+	public void testMultipleNegativeNumbers() {
+		thrown.expect(IllegalArgumentException.class);
+    	thrown.expectMessage("Negatives not allowed: [-4, -5]");
+    	Calculator.add("2,-4,3,-5");
 	}
 }
