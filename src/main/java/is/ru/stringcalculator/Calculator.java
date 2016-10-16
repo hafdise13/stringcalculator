@@ -24,12 +24,21 @@ public class Calculator {
 	private static int sum(String[] numbers) {
 		int total = 0;
 		List<String> negativeNumbers = new ArrayList<String>();
+		List<String> largeNum = new ArrayList<String>();
 		
 		for(String number : numbers) {
+
 			if(toInt(number) >= 0) {
+				if(toInt(number) >= 1000) {
+					largeNum.add(number);
+				}
+				else {
 				total += toInt(number);
+				}
 			}
-			else {
+
+
+			else if(toInt(number) < 0) {
 				negativeNumbers.add(number);
 			}	
 		}
